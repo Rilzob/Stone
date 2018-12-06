@@ -1,0 +1,21 @@
+primary     : "(" expr ")" | NUMBER | IDENTIFIER | STRING
+factor      : "-" primary | primary
+expr        : factor { OP factor }
+block       : "{" [ statement ] {(";" | EOL) [ statement ]} "}"
+simple      : expr
+statement   : "if" expr block [ "else" block ] | "while" expr block | simple
+program     : [ statement ] (";" | EOL)
+
+'''
+NUMBER、IDENTIFIER、STRING、OP、EOL都是终结符，分别表示整型字面量、标识符、字符串字面量、双目运算符和换行符。
+非终结符expr用于表示表达式，两个factor之间夹有一个双目运算符。
+非终结符primary用于表示括号括起的表达式、整型字面量、标识符或字符串字面量。
+非终结符factor用于表示一个primary或者表示primary之间再添加一个"-" 的组合。
+非终结符block(代码块)指的是由{}括起来的statement(语句序列),statement之间需要用分号或换行符(EOL)分隔，同时因为支持空语句所以statement两侧写有[]
+statement可以是if语句、while语句或simple。
+简单表达式语句(simple)是仅有表达式(expr)构成的语句。
+非终结符program包含分号或换行符，用于表示一句完整的语句。statement可以省略，用来表示空行。
+
+因为Stone语言规定代码块中最后一句能够省略句尾分号或换行符，因此设计了statement和program两种类型，
+program既可以是处于代码块之外的一条语句，也可以是一行完整的程序。
+'''

@@ -1,4 +1,4 @@
-package chap3;
+package Third;
 
 import stone.*;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package chap3;
+package Third;
 import stone.*;
 
 public class LexerRunner {
