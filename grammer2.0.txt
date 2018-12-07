@@ -1,0 +1,19 @@
+param       : IDENTIFIER
+params      : param { "," param }
+param_list  : "(" [ params ] ")"
+def         : "def" IDENTIFIER param_list block
+args        : expr { "," expr }
+postfix     : "(" [ args ] ")"
+primary     : ( "(" expr ")" | NUMBER | IDENTIFIER | STRING ) { postfix }
+simple      : expr [ args ]
+program     : [ def | statement ] ( ";" | EOL )
+
+'''
+形参param是标识符(变量名)
+形参序列params中至少包含一个param且各个参数通过逗号隔开
+param_list则是以括号括起的params或者是空括号对()
+def函数定义语句由def、标识符(函数名)、param_list及block组成。
+实参args由若干通过逗号分隔的expr组成。
+postfix是以括号括起的args，或者空括号对
+primary在原有基础上增加对表达式含有的函数调用的支持
+'''
