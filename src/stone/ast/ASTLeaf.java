@@ -1,5 +1,7 @@
 package stone.ast;
 
+import Sixth.Environment;
+import stone.StoneException;
 import stone.Token;
 
 import java.util.ArrayList;
@@ -15,4 +17,7 @@ public class ASTLeaf extends ASTree{ // 叶节点(不含树枝的节点)的父�
     public String toString(){ return token.getText(); }
     public String location(){ return "at line" + token.getLineNumber(); }
     public Token token(){ return token; }
+    public Object eval(Environment env){
+        throw new StoneException("cannot eval:" + toString(), this);
+    }
 }

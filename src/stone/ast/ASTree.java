@@ -1,4 +1,6 @@
 package stone.ast;
+import Sixth.Environment;
+
 import java.util.Iterator;
 
 public abstract class ASTree implements Iterable<ASTree>{
@@ -10,4 +12,5 @@ public abstract class ASTree implements Iterable<ASTree>{
     // 返回一个用于表示抽象语法树节点在程序内所处位置的字符串
     public Iterator<ASTree> iterator(){ return children(); }
     // 和children方法功能相同是个适配器，在将ASTree类转为Iterable类型时会使用该方法
+    public abstract Object eval(Environment env);
 }

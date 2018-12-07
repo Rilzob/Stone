@@ -1,5 +1,8 @@
 package stone.ast;
 
+import Sixth.Environment;
+import stone.StoneException;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,5 +30,8 @@ public class ASTList extends ASTree{ // 含有树枝的节点对象的父类
                 return s;
         }
         return null;
+    }
+    public Object eval(Environment env){
+        throw new StoneException("cannot eval:" + toString(), this);
     }
 }
