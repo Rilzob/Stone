@@ -1,0 +1,13 @@
+param       : IDENTIFIER
+params      : param { "," param }
+param_list  : "(" [ params ] ")"
+def         : "def" IDENTIFIER param_list block
+args        : expr { "," expr }
+postfix     : "(" [ args ] ")"
+primary     : " fun " param_list block |( "(" expr ")" | NUMBER | IDENTIFIER | STRING ) { postfix }
+simple      : expr [ args ]
+program     : [ def | statement ] ( ";" | EOL )
+
+'''
+相比较2.0修改了primary向其中添加了闭包的定义
+'''
